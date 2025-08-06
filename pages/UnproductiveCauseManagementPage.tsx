@@ -1,4 +1,5 @@
 
+
 import React, { useState, useEffect, useMemo } from 'react';
 import SupervisorSubPageHeader from '../components/SupervisorSubPageHeader';
 import { UserInfo, UserRole } from '../App';
@@ -122,8 +123,8 @@ const UnproductiveCauseManagementPage: React.FC<{
         setError(null);
         try {
             const [reasonsRes, categoriesRes] = await Promise.all([
-                fetch('http://localhost:3001/api/downtime/management-data'),
-                fetch('http://localhost:3001/api/downtime/categories')
+                fetch('/api/downtime/management-data'),
+                fetch('/api/downtime/categories')
             ]);
             if (!reasonsRes.ok || !categoriesRes.ok) throw new Error('Failed to fetch data.');
             
@@ -350,7 +351,7 @@ const ReasonModal: React.FC<{
         }
         setIsLoading(true);
         
-        const url = isEditMode ? `http://localhost:3001/api/downtime/reasons/${reasonToEdit.id}` : 'http://localhost:3001/api/downtime/reasons';
+        const url = isEditMode ? `/api/downtime/reasons/${reasonToEdit.id}` : '/api/downtime/reasons';
         const method = isEditMode ? 'PUT' : 'POST';
         const body = JSON.stringify({ 
             codigo, 
@@ -443,7 +444,7 @@ const CategoryModal: React.FC<{
         e.preventDefault();
         setError(null);
         setIsLoading(true);
-        const url = isEditMode ? `http://localhost:3001/api/downtime/categories/${categoryToEdit.id}` : 'http://localhost:3001/api/downtime/categories';
+        const url = isEditMode ? `/api/downtime/categories/${categoryToEdit.id}` : '/api/downtime/categories';
         const method = isEditMode ? 'PUT' : 'POST';
         const body = JSON.stringify({ nombre_categoria: nombre, descripcion });
 
@@ -505,7 +506,7 @@ const DeleteModalWrapper: React.FC<{
         setIsLoading(true);
         setError(null);
         
-        const url = type === 'reason' ? `http://localhost:3001/api/downtime/reasons/${item.id}` : `http://localhost:3001/api/downtime/categories/${item.id}`;
+        const url = type === 'reason' ? `/api/downtime/reasons/${item.id}` : `/api/downtime/categories/${item.id}`;
         const method = 'DELETE';
 
         try {

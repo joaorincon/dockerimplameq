@@ -46,7 +46,7 @@ const MachineManagementPage: React.FC<{
         setIsLoading(true);
         setError(null);
         try {
-            const response = await fetch('http://localhost:3001/api/machines');
+            const response = await fetch('/api/machines');
             if (!response.ok) throw new Error('Failed to fetch machines.');
             const data: Machine[] = await response.json();
             setMachines(data.sort((a, b) => a.nombre.localeCompare(b.nombre)));
@@ -72,7 +72,7 @@ const MachineManagementPage: React.FC<{
     };
 
     const handleSaveMachine = async (machineData: Omit<Machine, 'id'> & { id?: number }) => {
-        const url = machineData.id ? `http://localhost:3001/api/machines/${machineData.id}` : 'http://localhost:3001/api/machines';
+        const url = machineData.id ? `/api/machines/${machineData.id}` : '/api/machines';
         const method = machineData.id ? 'PUT' : 'POST';
 
         try {
@@ -98,7 +98,7 @@ const MachineManagementPage: React.FC<{
         setIsDeleting(true);
         setDeleteError(null);
         try {
-            const response = await fetch(`http://localhost:3001/api/machines/${machineToDelete.id}`, { method: 'DELETE' });
+            const response = await fetch(`/api/machines/${machineToDelete.id}`, { method: 'DELETE' });
             if (!response.ok && response.status !== 204) {
                  const errorData = await response.json();
                  throw new Error(errorData.message || 'Error al eliminar la máquina.');

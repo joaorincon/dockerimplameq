@@ -34,8 +34,9 @@ if (missingEnvVars.length > 0) {
 app.use(cors());
 app.use(express.json());
 
-// Serve static files (HTML, CSS, JS, etc.)
-app.use(express.static(__dirname));
+// --- Updated Static File Serving ---
+// Serve only the 'dist' directory for the frontend assets
+app.use(express.static(path.join(__dirname, 'dist')));
 
 // DB Connection Pool
 // It's crucial to use environment variables for database credentials.
@@ -952,7 +953,7 @@ app.put('/api/tasks/:id/status', async (req, res) => {
 // Catch-all route to serve the frontend app
 // This must be after all API routes
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'index.html'));
+  res.sendFile(path.join(__dirname, 'dist', 'index.html'));
 });
 
 // Server Listening

@@ -50,7 +50,7 @@ const UnproductiveCausePage: React.FC<UnproductiveCausePageProps> = ({ task, onB
             setIsLoading(true);
             setError(null);
             try {
-                const response = await fetch('http://localhost:3001/api/downtime/reasons');
+                const response = await fetch('/api/downtime/reasons');
                 if (!response.ok) {
                     throw new Error('No se pudieron cargar las causas de inactividad.');
                 }

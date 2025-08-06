@@ -71,7 +71,7 @@ const EditUserModal: React.FC<EditUserModalProps> = ({ isOpen, onClose, onSave, 
         setIsRolesLoading(true);
         setRolesError(null);
         try {
-            const response = await fetch('http://localhost:3001/api/roles');
+            const response = await fetch('/api/roles');
             if (!response.ok) throw new Error('No se pudieron cargar los roles.');
             const data: string[] = await response.json();
             const filteredRoles = data.filter(roleName => roleName.toLowerCase() !== 'root');

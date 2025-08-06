@@ -57,7 +57,7 @@ const SupervisorUserManagementPage: React.FC<SupervisorUserManagementPageProps> 
         setIsLoading(true);
         setError(null);
         try {
-            const response = await fetch('http://localhost:3001/api/users');
+            const response = await fetch('/api/users');
             if (!response.ok) {
                 const errorData = await response.json();
                 throw new Error(errorData.message || 'Error al cargar los usuarios.');
@@ -81,7 +81,7 @@ const SupervisorUserManagementPage: React.FC<SupervisorUserManagementPageProps> 
 
     const handleCreateUser = async (newUserData: NewUserData) => {
         try {
-            const response = await fetch('http://localhost:3001/api/users', {
+            const response = await fetch('/api/users', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -116,7 +116,7 @@ const SupervisorUserManagementPage: React.FC<SupervisorUserManagementPageProps> 
             return Promise.reject(new Error('No hay un usuario conectado para realizar la acción.'));
         }
         try {
-            const response = await fetch(`http://localhost:3001/api/users/${userId}`, {
+            const response = await fetch(`/api/users/${userId}`, {
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ ...userData, updated_by_id: currentUser.id }),
@@ -153,7 +153,7 @@ const SupervisorUserManagementPage: React.FC<SupervisorUserManagementPageProps> 
         setIsDeleting(true);
         setDeleteError(null);
         try {
-            const response = await fetch(`http://localhost:3001/api/users/${userToDelete.id}`, {
+            const response = await fetch(`/api/users/${userToDelete.id}`, {
                 method: 'DELETE',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ deleted_by_id: currentUser.id })

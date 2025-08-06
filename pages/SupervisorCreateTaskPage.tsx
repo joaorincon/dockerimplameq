@@ -57,7 +57,7 @@ const SupervisorCreateTaskPage: React.FC<SupervisorCreateTaskPageProps> = ({ onB
             setEquipmentError(null);
             try {
                 // Fetch only active machines
-                const response = await fetch('http://localhost:3001/api/machines?activeOnly=true');
+                const response = await fetch('/api/machines?activeOnly=true');
                 if (!response.ok) {
                     throw new Error('No se pudieron cargar los equipos.');
                 }
@@ -74,7 +74,7 @@ const SupervisorCreateTaskPage: React.FC<SupervisorCreateTaskPageProps> = ({ onB
             setIsLoadingOrders(true);
             setOrdersError(null);
             try {
-                const response = await fetch('http://localhost:3001/api/production-orders/selectable');
+                const response = await fetch('/api/production-orders/selectable');
                  if (!response.ok) {
                     throw new Error('No se pudieron cargar las órdenes de producción.');
                 }
@@ -91,7 +91,7 @@ const SupervisorCreateTaskPage: React.FC<SupervisorCreateTaskPageProps> = ({ onB
             setIsLoadingOperators(true);
             setOperatorsError(null);
             try {
-                const response = await fetch('http://localhost:3001/api/users/operators');
+                const response = await fetch('/api/users/operators');
                 if (!response.ok) {
                     throw new Error('No se pudieron cargar los operarios.');
                 }
@@ -118,7 +118,7 @@ const SupervisorCreateTaskPage: React.FC<SupervisorCreateTaskPageProps> = ({ onB
         setIsLoadingOperations(true);
         setOperationsError(null);
         try {
-            const response = await fetch(`http://localhost:3001/api/products/${productId}/operations`);
+            const response = await fetch(`/api/products/${productId}/operations`);
             if (!response.ok) {
                 throw new Error('No se pudieron cargar las operaciones.');
             }

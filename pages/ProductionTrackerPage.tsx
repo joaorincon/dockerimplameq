@@ -148,12 +148,13 @@ const ProductionTrackerPage: React.FC<ProductionTrackerPageProps> = ({ tasks, on
                 <span className="material-icons transition-transform duration-300 group-open:rotate-180">expand_more</span>
               </summary>
               <div className="space-y-4 border-t border-slate-200 p-4">
-                {completedTasks.map(task => (
-                    <CompletedTaskHistoryItem key={task.id} task={task} />
-                ))}
-                <GenericHistoryItem type="Completed" time="10:00 AM - 11:00 AM" details="MO20241021-006 | Ref. Parte: PRT-99001 | Op: Limpieza | Eq: Estación Limpieza 1 | Cant: 150" />
-                <GenericHistoryItem type="Completed" time="11:30 AM - 12:30 PM" details="MO20241021-007 | Ref. Parte: PRT-22334 | Op: Ensamblaje | Eq: Línea 2 | Cant: 120" />
-                <GenericHistoryItem type="Unproductive" time="1:00 PM - 1:30 PM" details="Fallo de Equipo | Línea 1" />
+                {completedTasks.length > 0 ? (
+                  completedTasks.map(task => (
+                      <CompletedTaskHistoryItem key={task.id} task={task} />
+                  ))
+                ) : (
+                  <p className="text-center text-slate-500 py-4">No hay tareas completadas en el historial de hoy.</p>
+                )}
               </div>
             </details>
           </div>

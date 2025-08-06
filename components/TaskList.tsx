@@ -93,7 +93,7 @@ const TaskList: React.FC<TaskListProps> = ({
                         </tr>
                     </thead>
                     <tbody>
-                        {[...tasks].reverse().map(task => (
+                        {tasks.map(task => (
                             <tr key={task.id} className="bg-white border-b hover:bg-slate-50">
                                 <th scope="row" className="px-6 py-4 font-medium text-slate-900 whitespace-nowrap">{task.id}</th>
                                 <td className="px-6 py-4 font-medium text-blue-600">{task.productionOrderNumber || '-'}</td>

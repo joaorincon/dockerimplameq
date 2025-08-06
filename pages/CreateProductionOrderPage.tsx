@@ -1,4 +1,5 @@
 
+
 import React, { useState, useEffect } from 'react';
 import SupervisorSubPageHeader from '../components/SupervisorSubPageHeader';
 import CreateProductionOrderForm from '../components/CreateProductionOrderForm';
@@ -34,7 +35,7 @@ const CreateProductionOrderPage: React.FC<CreateProductionOrderPageProps> = ({ o
             setIsLoading(true);
             setError(null);
             try {
-                const response = await fetch('http://localhost:3001/api/products');
+                const response = await fetch('/api/products');
                 if (!response.ok) {
                     throw new Error('No se pudieron cargar los productos.');
                 }
